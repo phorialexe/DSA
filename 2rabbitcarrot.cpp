@@ -34,7 +34,7 @@ int main() {
             if (ar >= 0 && ar < R &&
                 ac >= 0 && ac < C &&
                 !visited[ar][ac] &&
-                grid[ar][ac] != 'B') {
+                grid[ar][ac] != 'B' && grid[ar][ac]!='R' && grid[ar][ac]!='r') {
 
                 if (grid[ar][ac] == 'C') {
                     cout << dist + 1 <<" "<<rabbit<< endl;
