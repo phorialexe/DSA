@@ -1,0 +1,75 @@
+/*
+Problem: Greg and Array
+Platform: Codeforces
+Contest: CF 295A
+
+Topic:
+Prefix Sum
+Difference Array
+
+Key Insight:
+Use a difference array on operations to determine
+how many times each operation is applied.
+
+Then use another difference array on the original
+array to efficiently apply all updates.
+
+Time Complexity:
+O(n + m + k)
+
+Space Complexity:
+O(n + m)
+
+Difficulty:
+Medium
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,m,k;
+    cin>>n>>m>>k;
+    vector<tuple<int,int>> q(k);
+    vector<tuple<int,int,int>> op(m);
+    vector<int> nums(n+1,0);
+    vector<int> dp(n+2,0);
+    vector<int> opdp(m+2,0);
+    for(int i=1;i<=n;i++){
+        cin>>nums[i];
+    }
+    
+    for(int i=0;i<m;i++){
+        cin>>get<0>(op[i])>>get<1>(op[i])>>get<2>(op[i]);
+    }
+    for(int i=0;i<k;i++){
+        cin>>get<0>(q[i])>>get<1>(q[i]);
+    }
+
+    for(auto& [x,y]: q){
+        opdp[x]+=1;
+        opdp[y+1]-=1;
+    }
+
+    for(int i=1;i<=n;i++){
+        opdp[i]+=opdp[i-1];
+    }   
+
+    for(int i = 0; i < m; i++){
+        auto [l,r,v] = op[i];
+        int times = opdp[i+1];
+
+        dp[l] += times * v;
+        dp[r+1] -= times * v;
+    }
+    for(int i=1;i<=n;i++){
+        dp[i]+=dp[i-1];
+    }
+    for(int i=1;i<=n;i++){
+        dp[i]+=nums[i];
+    }
+    for(int i=1;i<=n;i++){
+        cout<<dp[i]<<" ";
+    }
+    cout<<endl;
+    return 0;
+}
