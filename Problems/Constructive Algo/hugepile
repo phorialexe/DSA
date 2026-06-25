@@ -1,0 +1,50 @@
+/*
+Problem: Huge Pile
+Platform: CodeForces
+
+Topic:
+Math, Divide and Conquer
+
+Key Insight:
+After each split, a pile x becomes:
+
+floor(x/2)
+ceil(x/2)
+
+Track the interval of possible pile sizes
+reachable after each split.
+
+Time Complexity:
+O(log n)
+
+Difficulty:
+Medium
+*/
+
+
+#include<iostream>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        int k;
+        int step=0;
+        cin>>n>>k;
+        int l=n, h=n;
+        while(k<=l){
+            if(k==h||k==l){
+             cout<<step<<endl;
+             break;
+            }
+            else{
+                step++;
+                l = l/2;
+                h = (h+1)/2;
+            }
+        }
+        if(k>h&&k>l)
+            cout<<-1<<endl;
+    }
+}
