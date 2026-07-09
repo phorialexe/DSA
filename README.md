@@ -51,5 +51,10 @@ Each solution is organized by topic and includes the implementation used to solv
 ## Linked List
 |  |
 | ------- |
+| [0206-reverse-linked-list](https://github.com/phorialexe/DSA/tree/master/0206-reverse-linked-list) |
 | [0328-odd-even-linked-list](https://github.com/phorialexe/DSA/tree/master/0328-odd-even-linked-list) |
+## Recursion
+|  |
+| ------- |
+| [0206-reverse-linked-list](https://github.com/phorialexe/DSA/tree/master/0206-reverse-linked-list) |
 <!---LeetCode Topics End-->
