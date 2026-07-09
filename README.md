@@ -45,3 +45,11 @@ This repository serves as a personal knowledge base for mastering:
 * Technical Interview Preparation
 
 Each solution is organized by topic and includes the implementation used to solve the problem.
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Linked List
+|  |
+| ------- |
+| [0328-odd-even-linked-list](https://github.com/phorialexe/DSA/tree/master/0328-odd-even-linked-list) |
+<!---LeetCode Topics End-->
