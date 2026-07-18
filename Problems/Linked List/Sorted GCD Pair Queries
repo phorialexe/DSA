@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<int> gcdValues(vector<int>& nums, vector<long long>& queries) {
+        int mx = *max_element(nums.begin(), nums.end());
+        vector<int> cnt(mx+1, 0);
+        for (int x : nums) cnt[x]++;
+
+        vector<long long> total(mx+1, 0);
+        for (int d = 1; d <= mx; d++)
+            for (int m = d; m <= mx; m += d)
+                total[d] += cnt[m];
+
+        vector<long long> exact(mx+1, 0);
+        for (int d = mx; d >= 1; d--) {
+            long long t = total[d];
+            exact[d] = t*(t-1)/2;
+            for (int k = 2*d; k <= mx; k += d)
+                exact[d] -= exact[k];
+        }
+
+        vector<long long> prefix(mx+1, 0);
+        for (int d = 1; d <= mx; d++)
+            prefix[d] = prefix[d-1] + exact[d];
+
+        vector<int> ans;
+        for (long long q : queries) {
+            int lo = 1, hi = mx, res = -1;
+            while (lo <= hi) {
+                int mid = (lo+hi)/2;
+                if (prefix[mid] > q) { res = mid; hi = mid-1; }
+                else lo = mid+1;
+            }
+            ans.push_back(res);
+        }
+        return ans;
+    }
+};
